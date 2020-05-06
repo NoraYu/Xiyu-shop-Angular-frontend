@@ -9,7 +9,7 @@ import {CartItem} from '../../common/cart-item';
   styleUrls: ['./cart-status.component.css']
 })
 export class CartStatusComponent implements OnInit {
-  //@Input() cartItems:CartItem[];
+
   totalPrice:number=0.00;
   totalQuantity:number=0;
 
