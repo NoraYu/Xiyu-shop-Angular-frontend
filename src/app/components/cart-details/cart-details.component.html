@@ -61,6 +61,10 @@
             <p>Total Quantity: {{ totalQuantity }}</p>
             <p>Shipping: FREE</p>
             <p>Total Price: {{ totalPrice | currency: 'USD' }}</p>
+            <a routerLink="/checkout" class="btn btn-primary">Checkout</a>
+<!--            <button (click)="confirmedCart(cartItems)" class="btn btn-info btn-sm mt-2">Confirm</button>-->
+
+
           </td>
         </tr>
       </table>
