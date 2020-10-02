@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Product} from '../common/product';
@@ -13,6 +13,16 @@ export class ProductService {//这个Service有2个fields：baseUrl和 HttpClien
 
   private baseUrl = 'http://localhost:8080/api/products';
   private categoriesUrl = 'http://localhost:8080/api/product-category';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+  headers= new HttpHeaders()
+    .set('content-type', 'application/json');
+
+
   constructor(private  httpClient:HttpClient) { }
 
   getProductList(theCategoryId:number):Observable<Product[]>{
@@ -61,7 +71,28 @@ export class ProductService {//这个Service有2个fields：baseUrl和 HttpClien
   }
 
 
+  save(product: any) :Observable<any>{
+    let result: Observable<any>;
+
+    result = this.httpClient.post(this.baseUrl, product);
+    return  result;
+  }
+
+  insertProductCategory(pc:ProductCategory):Observable<any>{
+    let result: Observable<any>;
+    const url='http://localhost:8080/api/product-category';
+    const jsonPC=JSON.stringify(pc);
+    console.log(jsonPC);
+    //console.log({'headers':JSON.stringify(this.headers)})
+    result =this.httpClient.post(url,jsonPC,this.httpOptions);
+    console.log(2);
+    return  result;
+  }
+
 }
+
+
+
 interface GetProductResponse {
   _embedded: {           //必须是embedded 不然不能用
     products: Product[];

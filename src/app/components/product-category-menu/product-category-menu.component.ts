@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductCategory} from '../../common/product-category';
 import {ProductService} from '../../services/product.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-category-menu',
@@ -9,15 +10,27 @@ import {ProductService} from '../../services/product.service';
 })
 export class ProductCategoryMenuComponent implements OnInit {
   productCategories:ProductCategory[]=[];
-  constructor(private productService : ProductService) { }
+  constructor(private productService : ProductService, private  route:ActivatedRoute,private  router2: Router) { }
 
   ngOnInit(): void {
-    this.listProductCategories();
+    this.route.paramMap.subscribe(()=>{
+      this.listProductCategories();
+      //this.router2.navigate(['/products']);
+  })
+
   }
 
   listProductCategories(){
     this.productService.getProductCategoriesList().subscribe(data =>{
       console.log('Product Categories= '+JSON.stringify(data))
       this.productCategories=data;})
+    //
+  }
+
+  updatelistProductCategories(){
+    this.route.paramMap.subscribe(()=>{
+      this.listProductCategories();
+      //this.router2.navigate(['/products']);
+    })
   }
 }

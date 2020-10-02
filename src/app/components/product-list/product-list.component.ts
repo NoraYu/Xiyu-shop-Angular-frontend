@@ -13,8 +13,6 @@ import {CartItem} from '../../common/cart-item';
 export class ProductListComponent implements OnInit {
   products:Product[] =[];
 
-
-
   currentCategoryId:number=1;
   previousCategoryId:number=1;
   currentCategoryName:string=null;
@@ -51,7 +49,8 @@ export class ProductListComponent implements OnInit {
   handleListProducts(){
     const hasCategoryId:boolean=this.route.snapshot.paramMap.has('id');
     if(hasCategoryId){
-      this.currentCategoryId=+this.route.snapshot.paramMap.get('id');
+      //convert a string to number in TypeScript using = +
+      this.currentCategoryId= +this.route.snapshot.paramMap.get('id');
       this.currentCategoryName=this.route.snapshot.paramMap.get('name');}
     else {
       this.currentCategoryId=1;

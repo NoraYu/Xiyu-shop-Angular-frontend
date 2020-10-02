@@ -1,0 +1,19 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+<form #newProductForm="ngForm" (ngSubmit)="create(newProductForm.value)">
+  <label>
+    Product Name:
+    <input placeholder="product name" [(ngModel)]="product.name"
+           required name="name" >
+  </label>
+
+  <label>
+<!--输入必须是product-category/5-->
+    <input placeholder="category id" [(ngModel)]="product.category"
+           required name="category" >
+  </label>
+  <button type="submit"
+         >Save</button>
+</form>
+  </div>
+</div>

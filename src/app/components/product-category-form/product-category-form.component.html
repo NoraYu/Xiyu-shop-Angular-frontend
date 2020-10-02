@@ -1,0 +1,12 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <label>
+          Catgory Name: <input type="text" formControlName="categoryName" required>
+        </label>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
